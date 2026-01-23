@@ -6,7 +6,7 @@ console.log("Fetched notes:", data.notes);
 export default function Notes() {
   return (
       <div className={css.container}>
-        <NoteList notes={data.notes} />
+
         </div>
         );
 }
