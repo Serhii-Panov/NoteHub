@@ -13,14 +13,16 @@ interface CreateNoteParams {
     content: string,
     tag: "Work" | "Personal" | "Meeting" | "Shopping" | "Todo"
 }
-interface NoteApiResponse {
+export interface NoteApiResponse {
     notes:Note[],
     totalPages: number
 }
 const API_URL = "https://notehub-public.goit.study/api/notes"
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 
 export async function fetchNotes(params:FetchNotesParams):Promise<NoteApiResponse> {
+  //await delay(500); // Simulate network delay
       try {
     const {data} = await axios.get<NoteApiResponse>(API_URL, {
       params: {
@@ -41,6 +43,17 @@ export async function fetchNotes(params:FetchNotesParams):Promise<NoteApiRespons
     throw new Error("Failed to fetch notes");
   }
 }
+
+export async function fetchNoteById(id:string): Promise<Note> {
+    const {data} = await axios.get<Note>(`${API_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+        Accept: "application/json",
+      },
+    });
+    return data;
+  }
+
 export async function createNote(newNote:CreateNoteParams): Promise<Note> {
   try {
     const {data} = await axios.post<Note>(API_URL, newNote, {
