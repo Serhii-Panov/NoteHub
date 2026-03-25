@@ -12,7 +12,7 @@ Cloud Sync: (If applicable) Keep your notes synced across all your devices.
 Frontend: React.js / Next.js (Modern UI components)
 Styling: Tailwind CSS / Styled Components
 State Management: Redux Toolkit / Context API
-Backend: Node.js / Firebase / MongoDB (Specify which one you used!)
+Backend: Node.js / MongoDB
 
 🚀 Installation & Local Setup
 Get NoteHub up and running on your machine:
